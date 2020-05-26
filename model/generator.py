@@ -31,8 +31,10 @@ class AADLayer(nn.Module):
         # identity integration
         gamma_id = self.fc1(z_id)
         beta_id = self.fc2(z_id)
-        gamma_id = gamma_id.reshape(h.shape[0], self.c_x, 1, 1).expand_as(h)
-        beta_id = beta_id.reshape(h.shape[0], self.c_x, 1, 1).expand_as(h)
+#         gamma_id = gamma_id.reshape(h.shape[0], self.c_x, 1, 1).expand_as(h)
+#         beta_id = beta_id.reshape(h.shape[0], self.c_x, 1, 1).expand_as(h)
+        gamma_id = gamma_id.reshape(h.shape[0], self.c_in, 1, 1).expand_as(h)
+        beta_id = beta_id.reshape(h.shape[0], self.c_in, 1, 1).expand_as(h)
         I = gamma_id * h + beta_id
 
         # adaptively attention mask
